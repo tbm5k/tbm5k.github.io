@@ -23,21 +23,48 @@
     </head>
     <body class=" h-screen flex justify-center items-center px-6 sm:px-0 dark:bg-zinc-950 dark:text-white">
         <main class=" text-center space-y-4">
-            <p class=" text-2xl">Teddy Mbugua</p>
+            <p id="btn" class=" text-2xl">Teddy <span class=" cursor-pointer">Mbugua</span></p>
             <p>Howdy, I&apos;m a software engineer. I evangelize Go but I tinker with Typescript a tone.</p>
             <p>
                 I have two projects that I&apos;m currently working on&colon; 
-                <a href="https://github.com/tbm5k/ffmpeg-docker" class=" font-semibold underline underline-offset-4 transition duration-150 hover:text-blue-500">ffmpeg 🐳</a> and 
-                <a href="https://github.com/tbm5k/transcoder" class=" font-semibold underline underline-offset-4 transition duration-150 hover:text-blue-500">transcoder 📽️</a>
+                <a id="proj1" target="_blank" href="https://github.com/tbm5k/ffmpeg-docker" class=" font-semibold underline underline-offset-4 transition duration-150 hover:text-blue-500">ffmpeg 🐳</a> and 
+                <a id="proj2" target="_blank" href="https://github.com/tbm5k/transcoder" class=" font-semibold underline underline-offset-4 transition duration-150 hover:text-blue-500">transcoder 📽️</a>
             </p>
             <p>And did I say that I use Vim btw?</p>
             <p class=" mt-8 text-gray-400 text-xs italic">Somewhere on this page, a little secret is waiting to be found—are you curious enough to uncover it?</p>
-            <div class="absolute bottom-2 left-0 right-0 text-white dark:text-zinc-950">
-                <p>Hello curious!</p>
-                <p>Ping me at: <a href="tel:+254711269968">+254711269968</a></p>
-                <p>Rather: <a href="mailto:tedburg5@gmail.com">tedburg5@gmail.com</a></p>
+            <p class=" text-gray-400 text-xs italic opacity-0 transition-all duration-1000" id="hint">Hint: Clickable text</p>
+            <div id='contact' class=" text-sm absolute bottom-2 left-0 right-0 hidden">
+                <p class=" font-bold mb-4">Hello Curious! 🎉</p>
+                <p>Ping me at: <a href="tel:+254711269968" class=" text-gray-400">+254711269968</a></p>
+                <p>Rather: <a href="mailto:tedburg5@gmail.com" class=" text-gray-400">tedburg5@gmail.com</a></p>
             </div>
         </main>
+        <script>
+            const btn = document.getElementById('btn');
+            btn.addEventListener('click', () => {
+                document.getElementById('contact').classList.remove('hidden');
+                gtag('event', 'contact_view');
+            });
+
+            setTimeout(() => {
+                document.getElementById('hint').classList.remove('opacity-0');
+                gtag('event', 'hint_fire');
+            }, 10000);
+
+            const proj1 = document.getElementById('proj1');
+            proj1.addEventListener('click', () => {
+                gtag('event', 'project_view', {
+                    'source': proj1.href
+                });
+            });
+
+            const proj2 = document.getElementById('proj2');
+            proj1.addEventListener('click', () => {
+                gtag('event', 'project_view', {
+                    'source': proj2.href
+                });
+            });
+        </script>
     </body>
 </html>
 
